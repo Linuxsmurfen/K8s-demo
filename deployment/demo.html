@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Dagre-D3 test</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script
+    type="text/javascript"
+    src="/js/lib/dummy.js"
+    
+  ></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js"></script>
+      <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+  <style id="compiled-css" type="text/css">
+      body {
+  font-family: sans-serif;
+  color: #444;
+}
+.clusters rect {
+  fill: #00ffd0;
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+text {
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.node rect {
+  stroke: #999;
+  fill: #fff;
+  stroke-width: 1.5px;
+}
+
+.edgePath path {
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.red {
+ stroke: red;
+ fill: red;
+ stroke-width: 1.5px;
+}
+
+.black {
+ stroke: black;
+ fill: black;
+ stroke-width: 1.5px;
+}
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+      
+// Create the input graph
+var g = new dagreD3.graphlib.Graph({compound:true})
+  .setGraph({label: "Demo"})
+  //.setDefaultEdgeLabel(function() { return {}; })
+  ;
+
+// Here we're setting the nodes
+g.setNode('query',    {label: 'My web brower',rx: 5, ry: 5});
+g.setNode('response', {label: 'Response',rx: 5, ry: 5});
+
+// Layout
+g.setNode('cluster', {label: 'Cluster', clusterLabelPos: 'bottom', style: 'fill: #95b1c1'});
+g.setNode('pods',    {label: 'Pods', clusterLabelPos: 'top', style: 'fill: #7497ab'});
+g.setNode('nodes',   {label: 'Nodes', clusterLabelPos: 'bottom', style: 'fill: #517c95'});
+
+// Set the parents to define which nodes belong to which cluster
+g.setParent('pods', 'cluster');
+g.setParent('nodes', 'cluster');
+
+// Set up edges
+g.setEdge('query', 'response', {label: 0, labelStyle: "font-style: sans-serif; font-size: 14px"});
+
+// Create the renderer
+var render = new dagreD3.render();
+
+// Set up an SVG group so that we can translate the final graph incl zoom support
+var svg = d3.select("svg"),
+    svgGroup = svg.append("g"),
+    zoom = d3.zoom().on("zoom", function() {
+      svgGroup.attr("transform", d3.event.transform);
+    });
+svg.call(zoom);
+
+// Run the renderer. This is what draws the final graph.
+render(d3.select("svg g"), g);
+
+// Center the graph
+var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
+svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
+
+// Update
+setInterval(function() {
+  updateData();
+  render(svgGroup, g);
+}, 1000); 
+
+function updateData() {
+  // Get the json data
+  //d3.json("https://api.myjson.com/bins/1gkhw8", draw);
+  d3.json("https://api.myjson.com/bins/9v7gg", draw)
+  //d3.json("https://routeq0yqoltu-stja-che.9a6d.starter-us-east-1a.openshiftapps.com/data.json", draw)
+}
+
+function draw(data) {
+  // Set all arrows to black
+  g.edges().forEach(function(v) {
+    var edge = g.edge(v);
+    edge.arrowheadClass = 'black';
+  });
+  
+  // Add Node
+  g.setNode(data.Nodename, {label: data.Nodename ,rx: 5, ry: 5 });
+  g.setParent(data.Nodename, 'nodes');
+  
+  // Add Pod
+  g.setNode(data.Podname, {label: data.Version, rx: 5, ry: 5 });
+  g.setParent(data.Podname, 'pods');
+  
+  // Connect things
+  g.setEdge('response'  , data.Podname,  
+        { curve: d3.curveBasis, arrowheadClass: 'red', labelStyle: "font-style: sans-serif; font-size: 14px" });
+  g.setEdge(data.Podname, data.Nodename, 
+        { curve: d3.curveBasis, arrowheadClass: 'red' });
+  
+  // Update response label
+  g.setNode('response', {label: data.Text, rx: 5, ry: 5});
+  
+  // Update counter
+  g.edge('query', 'response').label++;
+  g.edge('response', data.Podname).label++;
+
+}
+
+
+    }
+
+  //]]></script>
+
+</head>
+<body>
+    <h1 align="center">Kubernetes demo</h1>
+<svg id="svg-canvas" width=960 height=600>
+  <rect width="100%" height="100%" fill="#cedbe3"/>
+</svg>
+
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "w5tkb4q7"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+</body>
+</html>
