@@ -13,14 +13,17 @@ import (
 var response string
 
 func defaultHandler(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintln(w, "Demo " + os.Getenv("K8S_TEXT"))
+        fmt.Fprintln(w, "Demo " + os.Getenv("APP_TEXT"))
 }
 
 func jsonHandler(w http.ResponseWriter, r *http.Request) {
-	    w.Header().Set("Content-Type", "application/json")
-	    w.Header().Set("Access-Control-Allow-Origin", "*")
-	    
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
         fmt.Fprintf(w, response)
+}
+
+func clientHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "demo.html")
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +43,8 @@ func main() {
 
 	http.HandleFunc("/", defaultHandler)
 	http.HandleFunc("/data.json", jsonHandler)
-        http.HandleFunc("/_healthz", healthHandler)
+	http.HandleFunc("/client", clientHandler)
+    	http.HandleFunc("/_healthz", healthHandler)
 
         log.Printf("Listening on :8080 at ...\n%s", response)
         log.Fatal(http.ListenAndServe(":8080", nil))
