@@ -28,8 +28,8 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-        response = "{\n  \"Version\": \"" + os.Getenv("K8S_VERSION") +
-                    "\",\n  \"Text\": \"" + os.Getenv("K8S_TEXT") +
+        response = "{\n  \"Version\": \"" + os.Getenv("APP_VERSION") +
+                    "\",\n  \"Text\": \"" + os.Getenv("APP_TEXT") +
                     "\",\n  \"Nodename\": \"" + os.Getenv("K8S_NODE_NAME") +
                     "\",\n  \"Podname\": \"" + os.Getenv("K8S_POD_NAME") +
                     "\",\n  \"Namespace\": \"" + os.Getenv("K8S_POD_NAMESPACE") +
