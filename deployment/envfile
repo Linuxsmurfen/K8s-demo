@@ -1,5 +1,5 @@
-export K8S_VERSION="v2.0"
-export K8S_TEXT="Testing1...."
+export APP_VERSION="v2.0"
+export APP_TEXT="Testing1...."
 export K8S_NODE_NAME="Node 3"
 export K8S_POD_NAME="Pod 33"
 export K8S_POD_NAMESPACE="namespace1"
