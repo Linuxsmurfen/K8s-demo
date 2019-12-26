@@ -1,3 +1,15 @@
+// A webserver that publish...
+//	/		Default page the publish "Demo + $APP_TEXT"
+//	/data.json	Publish the pod specific enviroment data in json format
+//	/client		A simple webpage that will graph the data
+//	/_healthz	Healthcheck "OK"
+
+// The K8S_ is automaticlly set by the pod deployment
+// The APP_ is manually set
+
+// Linuxsmurfen
+// 2019-12-26
+
 // Compile with...
 // go build -o demo demo.go
 
