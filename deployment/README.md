@@ -6,7 +6,7 @@ The image is automatically built on https://hub.docker.com/r/linuxsmurfen/deploy
 
 To pull this image:
 ```
-docker pull linuxsmurfen/deployment-demoo
+docker pull linuxsmurfen/deployment-demo
 ```
 
 To run this image:
