@@ -11,6 +11,7 @@ RUN go build -o /demo /demo.go
 FROM scratch
 
 # Copy stuff over
+RUN mkdir /app
 COPY --from=builder /demo /app/demo
 COPY demo.html /app/demo.html
 
