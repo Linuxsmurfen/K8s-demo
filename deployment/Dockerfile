@@ -9,7 +9,7 @@ COPY demo.go /app/demo.go
 RUN go build -o /app/demo /app/demo.go
 
 # --- build the final container ---------------
-FROM scratch
+FROM alpine
 
 # Copy stuff over
 COPY --from=builder /app/demo /demo
@@ -21,5 +21,5 @@ ENV APP_TEXT="Testing..."
 
 # Start webserver
 EXPOSE 8080
-#ENTRYPOINT ["demo"]
-CMD ["/demo"]
+#CMD ["/demo"]
+ENTRYPOINT ["demo"]
