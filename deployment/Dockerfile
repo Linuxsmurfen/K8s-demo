@@ -21,4 +21,4 @@ ENV APP_TEXT="Testing..."
 # Start webserver
 WORKDIR /app
 EXPOSE 8080
-ENTRYPOINT /app/demo
+ENTRYPOINT ["/app/demo"]
