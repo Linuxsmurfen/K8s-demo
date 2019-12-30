@@ -5,7 +5,7 @@ FROM golang:alpine AS builder
 COPY demo.go /demo.go
 
 # Build webserver
-RUN go build -o /demo
+RUN go build -o /demo /demo.go
 
 # --- build the final container ---------------
 FROM scratch
