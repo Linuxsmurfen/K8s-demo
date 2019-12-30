@@ -5,7 +5,7 @@ FROM golang:alpine AS builder
 RUN mkdir /app
 COPY demo.go /app/demo.go
 
-# Build webserver
+# Compile
 RUN go build -o /app/demo /app/demo.go
 
 # --- build the final container ---------------
@@ -23,5 +23,4 @@ ENV APP_TEXT="Testing..."
 # Start webserver
 WORKDIR /app
 EXPOSE 8080
-#CMD ["/demo"]
 ENTRYPOINT ["/app/demo"]
