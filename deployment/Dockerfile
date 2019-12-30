@@ -10,10 +10,6 @@ RUN go build -o /demo /demo.go
 # --- build the final container ---------------
 FROM scratch
 
-# Create dir
-RUN mkdir /app
-WORKDIR /app
-
 # Copy stuff over
 COPY --from=builder /demo /app/demo
 COPY demo.html /app/demo.html
@@ -23,5 +19,6 @@ ENV APP_VERSION="v1.0"
 ENV APP_TEXT="Testing..."
 
 # Start webserver
+WORKDIR /app
 EXPOSE 8080
 ENTRYPOINT /app/demo
