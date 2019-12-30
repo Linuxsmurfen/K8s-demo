@@ -12,14 +12,16 @@ RUN go build -o /app/demo /app/demo.go
 FROM alpine
 
 # Copy stuff over
-COPY --from=builder /app/demo /demo
-COPY demo.html demo.html
+RUN mkdir /app
+COPY demo.html /app/demo.html
+COPY --from=builder /app/demo /app/demo
 
 # Set enviroment
 ENV APP_VERSION="v1.0"
 ENV APP_TEXT="Testing..."
 
 # Start webserver
+WORKDIR /app
 EXPOSE 8080
 #CMD ["/demo"]
-ENTRYPOINT ["demo"]
+ENTRYPOINT ["/app/demo"]
