@@ -1,8 +1,0 @@
-export APP_VERSION="v2.0"
-export APP_TEXT="Testing1...."
-export K8S_NODE_NAME="Node 3"
-export K8S_POD_NAME="Pod 33"
-export K8S_POD_NAMESPACE="namespace1"
-export K8S_POD_IP="192.168.1.100"
-export K8S_HOST_IP="10.1.1.200"
-export K8S_POD_SERVICE_ACCOUNT="accountet"
