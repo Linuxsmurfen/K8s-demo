@@ -2,7 +2,6 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: demo-route
-  namespace: foobar
 spec:
   host: demo.apps.cluster1.ocp.lab.ip
   to:
