@@ -21,6 +21,10 @@ spec:
         - containerPort: 8080
           protocol: TCP
         env:
+          - name: APP_VERSION
+            value: "v1.0"
+          - name: APP_TEXT
+            value: "Demo of rolling deployment"
           - name: K8S_NODE_NAME
             valueFrom:
               fieldRef:
