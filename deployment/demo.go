@@ -23,7 +23,7 @@ import (
 )
 
 var response string
-const loggfilen string = "../demo.log"
+const loggfilen string = "demo.log"
 
 func defaultHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintln(w, "Demo " + os.Getenv("APP_TEXT"))
