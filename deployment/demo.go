@@ -1,7 +1,6 @@
 // A webserver that publish...
-//	/		Default page the publish "Demo + $APP_TEXT"
 //	/data.json	Publish the pod specific enviroment data in json format
-//	/client		A simple webpage that will graph the data
+//	/		A simple webpage that will graph the data
 //	/_healthz	Healthcheck "OK"
 
 // The K8S_ is automaticlly set by the pod deployment
@@ -25,17 +24,13 @@ import (
 var response string
 
 func defaultHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "Demo " + os.Getenv("APP_TEXT"))
+	http.ServeFile(w, r, "demo.html")
 }
 
 func jsonHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
     fmt.Fprintf(w, response)
-}
-
-func clientHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "demo.html")
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +52,6 @@ func main() {
 	//URI handlers			
 	http.HandleFunc("/", defaultHandler)
 	http.HandleFunc("/data.json", jsonHandler)
-	http.HandleFunc("/client", clientHandler)
     http.HandleFunc("/_healthz", healthHandler)
 
 	//Logging
