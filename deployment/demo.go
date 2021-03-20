@@ -23,7 +23,6 @@ import (
 )
 
 var response string
-const loggfilen string = "demo.log"
 
 func defaultHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintln(w, "Demo " + os.Getenv("APP_TEXT"))
@@ -44,15 +43,6 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//Setup logging to file
-	file, err := os.OpenFile(loggfilen, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-    if err != nil {
-        log.Fatal(err)
-    }
-	defer file.Close()
-	log.SetOutput(file)
-	log.SetPrefix(os.Getenv("K8S_POD_NAME") + "::")
-
 	//Build the json respond
     response = "{\n  \"Version\": \"" + os.Getenv("APP_VERSION") +
                 "\",\n  \"Text\": \"" + os.Getenv("APP_TEXT") +
