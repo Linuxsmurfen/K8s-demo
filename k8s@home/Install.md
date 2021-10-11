@@ -1,19 +1,33 @@
 Kubernetes installation at home with kubeadm
 
 Nodes:
--master1
--worker1
--worker2
+-k8s-master
+-k8s-worker0
+-k8s-worker1
 
-Steps:
-Donwload Ubunto 20.04
-Install OS on the servers
+##Steps:
+###OS install
+Download Ubuntu 20.04 LTS .iso
+Create VM with
+    • 8GB mem
+    • 4vcpu
+    • 200GB thin disk
+    • vlan3
 
-Load overlay and br_netfilter kernal modules.
-cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf 
-overlay 
-br_netfilter 
-EOF
+Entire disk, no lvm
+Enable sshd
+User: user/...
 
 
 
+###Prepare servers
+sudo apt install -y kubelet kubeadm kubectl
+
+
+###Install k8s
+sudo kubeadm init --pod-network-cidr 172.20.0.0/16
+
+
+
+Thanks to
+https://medium.com/platformer-blog/building-a-kubernetes-1-20-cluster-with-kubeadm-4b745eb5c697
