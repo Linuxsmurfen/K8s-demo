@@ -9,7 +9,7 @@
 |k8s-worker2|worker|
 
 ## Prepare the servers
-Download Ubuntu 20.04 LTS .iso   
+Download Ubuntu 20.04 LTS "ubuntu-20.04.3-live-server-amd64.iso"   
 - 8GB mem
 - 4vcpu
 - 200GB thin disk
