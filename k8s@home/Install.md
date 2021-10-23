@@ -5,8 +5,8 @@
 |Hostname|Role|
 |---|---|
 |k8s-master|master|
-|k8s-worker0|worker|
 |k8s-worker1|worker|
+|k8s-worker2|worker|
 
 ## Prepare the servers
 Download Ubuntu 20.04 LTS .iso   
@@ -23,8 +23,8 @@ Create a user: user/...
 Set hostname
 ```
 sudo hostnamectl set-hostname k8s-master
-sudo hostnamectl set-hostname k8s-worker0
 sudo hostnamectl set-hostname k8s-worker1
+sudo hostnamectl set-hostname k8s-worker2
 ```
 
 ## Install Packages
