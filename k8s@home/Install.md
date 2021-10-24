@@ -105,3 +105,44 @@ Thanks to
 https://medium.com/platformer-blog/building-a-kubernetes-1-20-cluster-with-kubeadm-4b745eb5c697   
 https://medium.com/platformer-blog/kubernetes-highly-available-cluster-upgrade-10f709bb357a   
 
+
+
+
+
+## Install MetalLB Add-On
+Used for baremetal loadbalancing, using ip range 192.168.3.240-250
+
+Change to "strictARP: true"
+```
+kubectl edit configmap -n kube-system kube-proxy
+```
+
+Install by manifest
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.3/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.3/manifests/metallb.yaml
+```
+
+Configure
+```
+kubectl apply -f MetalLB-ConfigMap.yaml -n metallb-system
+------------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.3.240-192.168.3.250
+      
+```
+Thanks to   
+https://metallb.universe.tf/installation/   
+https://metallb.universe.tf/configuration/   
+
+
