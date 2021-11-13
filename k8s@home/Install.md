@@ -157,3 +157,24 @@ $ ./get_helm.sh
 
 Thanks to   
 https://helm.sh/docs/intro/install/
+
+
+
+## Setup nfs-subdir-external-provisioner
+Install NFS commons on the worker nodes
+```
+sudo apt install nfs-common
+```
+
+Create a NFS share and verify
+```
+showmount -e 192.168.1.200
+```
+
+Add the NFS driver
+```
+$ helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+$ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner  \
+  --set nfs.server=192.168.1.200  \
+  --set nfs.path=/volume1/NFS
+```
