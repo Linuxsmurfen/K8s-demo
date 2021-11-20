@@ -160,6 +160,27 @@ https://helm.sh/docs/intro/install/
 
 
 
+## Install ingress
+
+Add nginx repository to helm
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+```
+
+Install nginx ingress controller
+```
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+```
+
+Thanks to   
+https://www.debontonline.com/2020/10/kubernetes-part-5-install-and-configure.html
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+
+
+
 ## Setup nfs-subdir-external-provisioner
 Install NFS commons on the worker nodes
 ```
