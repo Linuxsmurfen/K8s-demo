@@ -178,3 +178,6 @@ $ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/n
   --set nfs.server=192.168.1.200  \
   --set nfs.path=/volume1/NFS
 ```
+Thanks to   
+https://www.debontonline.com/2020/11/kubernetes-part-11-how-to-configure.html
+https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/charts/nfs-subdir-external-provisioner/README.md
