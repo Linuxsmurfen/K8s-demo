@@ -185,13 +185,14 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 
 
-## 7. Setup nfs-subdir-external-provisioner
+## 7. Setup dynamic persistant storage
+NFS to my Synology NAS with "nfs-subdir-external-provisioner"   
 Install NFS commons on the worker nodes
 ```
 sudo apt install nfs-common
 ```
 
-Create a NFS share and verify
+Verify that the share is available
 ```
 showmount -e 192.168.1.200
 ```
@@ -206,3 +207,30 @@ $ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/n
 Thanks to   
 https://www.debontonline.com/2020/11/kubernetes-part-11-how-to-configure.html
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/charts/nfs-subdir-external-provisioner/README.md
+
+
+
+
+## XX. Things to do...
+### Backup
+### Dashboard
+### Local persistant volumes
+### Perssistant volumes with (OpenEBS, Longhorn...)
+### Keycloak
+### Flux2
+
+## YY. Applications to add...
+### Home Assistant
+#### Deconz
+#### MariaDB
+### PiHole
+### Theia
+### Gitea
+### Minio
+### Prometheus
+### Grafana
+### Photoprism
+### Wireguard
+
+
+## Roadmap
