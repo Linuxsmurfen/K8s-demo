@@ -1,14 +1,17 @@
 # Kubernetes installation at home with kubeadm
 
-## Overview
+## 1. Overview
 
-|Hostname|Role|
-|---|---|
-|k8s-master|master|
-|k8s-worker1|worker|
-|k8s-worker2|worker|
+|Hostname|Role|IP|
+|---|---|---|
+|k8s-master|master|192.168.3.100|
+|k8s-worker1|worker|192.168.3.101|
+|k8s-worker2|worker|192.168.3.102|
 
-## Prepare the servers
+
+## 2. Install and configure the OS
+
+### Install
 Download Ubuntu 20.04 LTS "ubuntu-20.04.3-live-server-amd64.iso"   
 - 8GB mem
 - 4vcpu
@@ -27,7 +30,7 @@ sudo hostnamectl set-hostname k8s-worker1
 sudo hostnamectl set-hostname k8s-worker2
 ```
 
-## Install Packages
+### Configure
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf 
 overlay 
@@ -71,7 +74,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 
-## Initialize the Cluster
+## 3. Install Kubernetes
+### Initialize the cluster
 This only needs to perform on the control plane node only. (If you have multiple control plane nodes, do the same)
 ```
 sudo kubeadm init --pod-network-cidr 172.20.0.0/16
@@ -83,7 +87,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl version
 ```
 
-## Install Calico Network Add-On
+### Install Calico Network Add-On
 On the control plane node
 ```
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
@@ -91,7 +95,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 kubectl get pods -n kube-system
 ```
 
-## Join the worker nodes to the Cluster
+### Join the worker nodes to the Cluster
 ```
 kubeadm token create --print-join-command
 
@@ -109,8 +113,8 @@ https://medium.com/platformer-blog/kubernetes-highly-available-cluster-upgrade-1
 
 
 
-## Install MetalLB Add-On
-Used for baremetal loadbalancing, using ip range 192.168.3.240-250
+## 4. Install a baremetal loadbalancer
+Using Metallb with ip range 192.168.3.240-250   
 
 Change to "strictARP: true"
 ```
@@ -146,7 +150,7 @@ https://metallb.universe.tf/installation/
 https://metallb.universe.tf/configuration/   
 
 
-## Install Helm
+## 5. Install Helm
    
 On the master node install Helm   
 ```
@@ -160,7 +164,7 @@ https://helm.sh/docs/intro/install/
 
 
 
-## Install ingress
+## 6. Install ingress
 
 Add nginx repository to helm
 ```
@@ -181,7 +185,7 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 
 
-## Setup nfs-subdir-external-provisioner
+## 7. Setup nfs-subdir-external-provisioner
 Install NFS commons on the worker nodes
 ```
 sudo apt install nfs-common
