@@ -1,4 +1,4 @@
-##Add nvme storage to the Elitedesk 800g2
+## Add nvme storage to the Elitedesk 800g2
 
 ### Configure disk
 ```
