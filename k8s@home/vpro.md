@@ -27,3 +27,7 @@
 docker run -d -p 127.0.0.1:3000:3000 --name meshcommander vga101/meshcommander
 ```
 
+
+### Note
+Remote desktop will not work without a monitor connected.   
+Workaroud: Use a vga dummy adapter (buy or diy)
