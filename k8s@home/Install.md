@@ -212,25 +212,39 @@ https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/c
 
 
 ## XX. Things to do...
-### Backup
-### Dashboard
-### Local persistant volumes
-### Perssistant volumes with (OpenEBS, Longhorn...)
-### Keycloak
-### Flux2
+1. Flux
+2. Perssistant volumes with (OpenEBS, Longhorn...)
+3. Local persistant volumes
+4. Backup
+5. Dashboard
+6. Keycloak
 
 ## YY. Applications to add...
-### Home Assistant
-#### Deconz
-#### MariaDB
-### PiHole
-### Theia
-### Gitea
-### Minio
-### Prometheus
-### Grafana
-### Photoprism
-### Wireguard
+1. Gitea
+2. PiHole
+3. MeshController
+4. Home Assistant
+   1. Deconz
+   2. MariaDB
+5. Minio
+6. Prometheus
+7. Grafana
+8. Photoprism
+9. Wireguard
 
 
 ## Roadmap
+For the next iteration:
+1. PXE boot the servers
+2. Ansible configuration
+  - OS settings
+  - kubeadm
+  - calico
+  - flux
+
+3. Flux syncs all applications
+-  storage setup
+-  backup setup
+-  apps..
+
+
