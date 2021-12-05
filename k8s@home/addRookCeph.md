@@ -23,3 +23,4 @@ kubectl create -f cluster.yaml
 
 Thanks to:   
 https://dev.to/itminds/deploying-a-ceph-cluster-with-kubernetes-and-rook-1291
+https://www.adaltas.com/en/2019/09/09/rook-ceph-k8s/
