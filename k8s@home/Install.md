@@ -212,7 +212,23 @@ https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/c
 ## 8. Ceph storage - CSI
 See the "addRockCeph" document
 
-## 9. Flux
+## 9. KubeView
+```
+git clone https://github.com/benc-uk/kubeview
+cd kubeview/charts/
+
+kubectl create namespace kubeview
+kubectl config set-context --current --namespace kubeview
+
+cp example-values.yaml myvalues.yaml
+  (edit myvalues.yaml if required)
+
+helm install kubeview ./kubeview -f myvalues.yaml
+```
+
+Thanks to   
+https://github.com/benc-uk/kubeview
+
 
 
 ## Things to do...
