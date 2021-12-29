@@ -87,7 +87,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl version
 ```
 
-### Install Calico Network Add-On
+### Install Calico - CNI
 On the control plane node
 ```
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
@@ -185,7 +185,7 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/
 
 
 
-## 7. Setup dynamic persistant storage
+## 7. Setup dynamic persistant storage - CSI
 NFS to my Synology NAS with "nfs-subdir-external-provisioner"   
 Install NFS commons on the worker nodes
 ```
@@ -209,7 +209,7 @@ https://www.debontonline.com/2020/11/kubernetes-part-11-how-to-configure.html
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/charts/nfs-subdir-external-provisioner/README.md
 
 
-## 8. Ceph storage
+## 8. Ceph storage - CSI
 See the "addRockCeph" document
 
 ## 9. Flux
