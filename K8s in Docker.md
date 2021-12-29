@@ -61,3 +61,18 @@ kubectl cluster-info --context kind-cluster1
 kubectl get nodes --context kind-cluster1
 kubectl get pods --all-namespaces --context kind-cluster1
 ```
+
+8.	Delete the K8s cluster
+```
+kind delete cluster --name cluster1
+```
+
+9.	Setup ’Octant’ dashboard
+```
+docker run -d -p 8888:80 --name octant vikas027/octant
+```
+
+10.	Browse to <server>:8888 and import the kubeconfig
+```
+cat ~/.kube/config
+```
