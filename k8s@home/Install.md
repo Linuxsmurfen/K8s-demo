@@ -216,14 +216,11 @@ See the "addRockCeph" document
 ```
 git clone https://github.com/benc-uk/kubeview
 cd kubeview/charts/
+cp example-values.yaml myvalues.yaml 
+(edit myvalues.yaml if required)
 
-kubectl create namespace kubeview
-kubectl config set-context --current --namespace kubeview
-
-cp example-values.yaml myvalues.yaml
-  (edit myvalues.yaml if required)
-
-helm install kubeview ./kubeview -f myvalues.yaml
+helm install kubeview kubeview -f myvalues.yaml --namespace kubeview --create-namespace
+(helm uninstall kubeview kubeview  --namespace kubeview)
 ```
 
 Thanks to   
