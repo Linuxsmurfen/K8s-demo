@@ -209,13 +209,13 @@ https://www.debontonline.com/2020/11/kubernetes-part-11-how-to-configure.html
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/charts/nfs-subdir-external-provisioner/README.md
 
 
-## 8.  Ceph storage
+## 8. Ceph storage
 See the "addRockCeph" document
 
-## 9. 
+## 9. Flux
 
 
-## XX. Things to do...
+## Things to do...
 1. Flux
 2. ~~Perssistant volumes with (OpenEBS, Longhorn...)~~
 3. Local persistant volumes
@@ -223,7 +223,7 @@ See the "addRockCeph" document
 5. Dashboard
 6. Keycloak
 
-## YY. Applications to add...
+## Applications to add...
 1. Gitea
 2. PiHole
 3. MeshController
