@@ -318,7 +318,7 @@ See the "pi-hole.yaml" file
 
 ## Applications to add...
 1. ~~Gitea~~
-2. PiHole
+2. ~~PiHole~~
 3. MeshController
 4. Home Assistant
    1. Deconz
