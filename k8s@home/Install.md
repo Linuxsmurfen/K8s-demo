@@ -297,7 +297,7 @@ $ configure
 ```
 
 Thanks to   
-https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0
+https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0   
 https://jimangel.io/post/edgerouter-os-cli-cheatsheet/
 
 
