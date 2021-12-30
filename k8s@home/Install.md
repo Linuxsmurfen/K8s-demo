@@ -303,6 +303,8 @@ https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0
 
 
 
+## 12. PiHole
+See the "pi-hole.yaml" file   
 
 
 
