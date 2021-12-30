@@ -315,7 +315,7 @@ https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0
 6. Keycloak
 
 ## Applications to add...
-1. Gitea
+1. ~~Gitea~~
 2. PiHole
 3. MeshController
 4. Home Assistant
@@ -326,6 +326,7 @@ https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0
 7. Grafana
 8. Photoprism
 9. Wireguard
+10. ~~KubeView~~
 
 
 ## Roadmap
