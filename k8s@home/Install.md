@@ -212,19 +212,97 @@ https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner/blob/master/c
 ## 8. Ceph storage - CSI
 See the "addRockCeph" document
 
+
 ## 9. KubeView
+Nice GUI for showing how everything is connected.
+
 ```
 git clone https://github.com/benc-uk/kubeview
 cd kubeview/charts/
 cp example-values.yaml myvalues.yaml 
-(edit myvalues.yaml if required)
+
+edit myvalues.yaml  (set to false) 
 
 helm install kubeview kubeview -f myvalues.yaml --namespace kubeview --create-namespace
 (helm uninstall kubeview kubeview  --namespace kubeview)
 ```
 
+Setup the ingress rules
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-kubeview
+  namespace: kubeview
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "kubeview.k8s.home.ip"      
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: kubeview
+              port:
+                number: 80
+```
+
+
 Thanks to   
 https://github.com/benc-uk/kubeview
+
+
+## 10. Gitea
+
+<< Need to document this!  >>
+
+
+Setup the ingress rules
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-gitea
+  namespace: gitea
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "gitea.k8s.home.ip"      
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: gitea-service
+              port:
+                number: 3000
+```
+
+
+## 11. Add DNS entries to DNS
+Login to the EdgeRouter and add the entries. 
+(Was not able to add any wildcard DNS entries)
+
+```
+$ configure
+# set system static-host-mapping host-name kubeview.k8s.home.ip inet 192.168.x.x
+# set system static-host-mapping host-name gitea.k8s.home.ip inet 192.168.x.x
+# commit
+# save
+# exit
+```
+
+Thanks to   
+https://gist.github.com/plembo/6bb4491ebbfbce049c7efce0634d57f0
+
+
+
+
 
 
 
