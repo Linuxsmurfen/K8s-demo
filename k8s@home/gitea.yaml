@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea
+  labels:
+    app: gitea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitea
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      containers:
+      - name: gitea
+        image: gitea/gitea:1.13.2
+        ports:
+        - containerPort: 3000
+          name: gitea
+        volumeMounts:
+        - name: git-data
+          mountPath: /data
+      volumes:
+      - name: git-data
+        persistentVolumeClaim:
+          claimName: git-pvc
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: gitea
+  name: git-pvc
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea-service
+spec:
+  selector:
+    app: gitea
+  ports:
+  - name: gitea-http
+    port: 3000
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-gitea
+  namespace: gitea
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "gitea.k8s.home.ip"      
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: gitea-service
+              port:
+                number: 3000
