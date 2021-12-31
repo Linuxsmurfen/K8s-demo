@@ -256,32 +256,8 @@ https://github.com/benc-uk/kubeview
 
 
 ## 10. Gitea
+See "gitea.yaml"
 
-<< Need to document this!  >>
-
-
-Setup the ingress rules
-```
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-gitea
-  namespace: gitea
-  annotations:
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "gitea.k8s.home.ip"      
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: gitea-service
-              port:
-                number: 3000
-```
 
 
 ## 11. Update DNS
