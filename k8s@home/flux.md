@@ -28,3 +28,9 @@ How to uninstall flux from the k8s cluster
 ```
 flux uninstall --namespace=flux-system
 ```
+   
+   
+
+
+Thanks to:   
+https://fluxcd.io/docs/get-started/
