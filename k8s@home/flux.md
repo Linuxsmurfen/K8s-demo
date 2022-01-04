@@ -31,6 +31,11 @@ flux uninstall --namespace=flux-system
    
    
 
+### Watch for sync 
+```
+flux get kustomizations --watch
+```
+
 
 Thanks to:   
 https://fluxcd.io/docs/get-started/
