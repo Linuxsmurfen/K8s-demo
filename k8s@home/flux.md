@@ -1,6 +1,6 @@
-### Howto setup FluxCD
+## Howto setup FluxCD
 
-## Installation
+### Installation
 
 Install the flux binary on the system
 ```
@@ -23,7 +23,7 @@ flux bootstrap github \
 ```
 
 
-## Uninstall
+### Uninstall
 How to uninstall flux from the k8s cluster
 ```
 flux uninstall --namespace=flux-system
