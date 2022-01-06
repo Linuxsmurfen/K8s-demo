@@ -20,7 +20,19 @@ flux bootstrap github \
   --repository=Mini-k8s-cluster \
   --path=flux \
   --personal
+  
+  
 ```
+
+
+flux create kustomization my-secrets \
+--source=my-secrets \
+--path=./clusters/cluster0 \
+--prune=true \
+--interval=10m \
+--decryption-provider=sops \
+--decryption-secret=sops-gpg
+
 
 
 ### Uninstall
