@@ -123,8 +123,8 @@ kubectl edit configmap -n kube-system kube-proxy
 
 Install by manifest
 ```
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.3/manifests/namespace.yaml
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.3/manifests/metallb.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
 ```
 
 Configure
@@ -142,7 +142,7 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.3.240-192.168.3.250
+      - 192.168.1.240-192.168.1.249
       
 ```
 Thanks to   
